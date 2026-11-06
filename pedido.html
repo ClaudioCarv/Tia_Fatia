@@ -1,88 +1,457 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="toolkit.css">
-    <script src="pedido.js"></script>
-    <script src="script.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#D62828">
+    <title>Tia Fatia 🍕 | Personalizar seu Pedido</title>
+    
+    <link rel="icon" href="img/Tia-fatia-logo.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="icon" href="img/Tia-fatia-logo.png" type="image/x-icon">
-    <title>Tia Fatia - Pedidos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .custom-page-container {
+            padding: 3rem 0 5rem;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .order-review-card {
+            background: #FFF;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 2rem;
+        }
+
+        .order-review-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 1.25rem;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 1.5rem;
+        }
+
+        .order-review-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .items-table {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .table-item-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1.25rem;
+            background: var(--bg-page);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            gap: 1rem;
+            transition: var(--transition);
+        }
+
+        .table-item-row:hover {
+            border-color: var(--accent-gold);
+            background: #FFF;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .table-item-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex: 1;
+        }
+
+        .table-item-img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            background: #FFF;
+            border-radius: var(--radius-sm);
+            padding: 0.25rem;
+        }
+
+        .table-item-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .table-item-details {
+            font-size: 0.8rem;
+            color: var(--dark-muted);
+            margin-top: 0.2rem;
+        }
+
+        .table-item-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .table-item-price {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--primary);
+            min-width: 90px;
+            text-align: right;
+        }
+
+        .order-actions-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding-top: 1.5rem;
+            border-top: 1px dashed var(--border);
+        }
+
+        .total-display-box {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--dark);
+        }
+
+        .total-display-box span {
+            color: var(--primary);
+        }
+
+        /* Seção de Adicionar Sabores Rápidos */
+        .quick-add-section {
+            background: #FFF;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 2rem;
+        }
+
+        .quick-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.25rem;
+        }
+
+        .quick-card {
+            background: var(--bg-page);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .quick-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .quick-card img {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+            margin-bottom: 0.5rem;
+        }
+
+        .quick-card h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+        }
+
+        .quick-card span {
+            font-size: 0.88rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+        }
+
+        @media (max-width: 768px) {
+            .table-item-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .table-item-right {
+                width: 100%;
+                justify-content: space-between;
+                padding-top: 0.75rem;
+                border-top: 1px dashed var(--border);
+            }
+        }
+    </style>
 </head>
 <body>
-    <nav class="naveg">
-        <a href="index.html" onmouseover="trocarImagem('Nav_home_hover')" onmouseout="trocarImagem('home_nav')">
-            <img id="imagemNav" src="img/home_nav.png" alt="">
-        </a>
-        <a href="pedido.html" onmouseover="trocarImagem2('Nav_carrinho_hover')" onmouseout="trocarImagem2('carrinho_nav')">
-            <img id="imagemNav2" src="img/carrinho_nav.png" alt=""></a>
-        <a href="entregas.html"  onmouseover="trocarImagem3('Nav_entregas_hover')" onmouseout="trocarImagem3('entregas_nav')">
-            <img id="imagemNav3" src="img/entregas_nav.png" alt=""></a>
-        <a href="#Sobre"></a>
-    </nav>
-    <div class="imgindex">
-        <img class="logoS" src="img/logoS.png" alt="">
-    </div>
-    
-    <h1 class="t1">Seu Pedido</h1>
-    <div class="saboresitem" >
-        <h1>Pedidos</h1>
-    </div>
-    <div class="pedidos">
-        <div class="order"></div>
-    </div>
-    <!-- total do pedido -->
-    <hr>
-    <h2>Total: R$<span id="total-amount">0</span></h2>
-    <div class="prosseguir">
-        <button id="clear-order">Limpar Pedido</button>
-    </div>
-    <h2 class="verde">Recheios de borda</h2>
-    
-    <div class="recheios">    
-        <span>Catupiry</span>
-        <span>Alpino</span>
-        <span>Cheddar</span>
-        <span>Nenhum</span>
-    </div>
-    <div class="space">
-        <div class="adds">
-            <!-- Adicionais -->
-            <h2 class="verde">Adicionais</h2>
-            <hr>
-            <div class="spadds">
-                <span>Queijo</span>
-                <span>Tomate</span>
-                <span>Molho pesto</span>
-                <span>Azeitona</span>
-                <span>Manjericão</span>
-                <span>Orégano</span>
-                <span>Cream Cheese</span>
+
+    <!-- NAVBAR HEADER -->
+    <header class="header-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <img src="img/logoS.png" alt="Logo Tia Fatia" class="brand-logo">
+                <span>
+                    Tia Fatia
+                    <small>Pizza por Fatia</small>
+                </span>
+            </a>
+
+            <nav class="nav-links">
+                <a href="index.html">Início</a>
+                <a href="index.html#cardapio">Cardápio</a>
+                <a href="pedido.html" class="active">Personalizar Pedido</a>
+                <a href="entregas.html">Acompanhar Pedido</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="btn-icon" onclick="toggleCartDrawer()" title="Ver Carrinho">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="cart-badge" style="display: none;">0</span>
+                </button>
+                <a href="login.html" id="navUserBtn" class="btn-user-profile">
+                    <span>Entrar</span>
+                </a>
             </div>
         </div>
-        <div class="adds">
-            <!-- Molhos -->
-            <h2 class="verde">Molhos</h2>
-            <hr>
-            <div class="spadds">
-                <span>Maionese</span>
-                <span>Geleia de Pimenta</span>
-                <span>Agridoce</span>
-                <span>Maionese da Casa</span>
-                <span>Queijo Parmesão</span>
+    </header>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="container">
+        <div class="custom-page-container">
+            
+            <!-- Título da Página -->
+            <div style="text-align: center; margin-bottom: 2.5rem;">
+                <span class="section-tag">Seu Pedido em Detalhes</span>
+                <h1 class="section-title">Fatias & Personalizações</h1>
+                <p class="section-desc">Revise suas escolhas, adicione mais sabores e avance para a finalização.</p>
+            </div>
+
+            <!-- Card de Revisão de Pedido -->
+            <div class="order-review-card">
+                <div class="order-review-header">
+                    <h2 class="order-review-title">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                        </svg>
+                        Fatias Selecionadas
+                    </h2>
+                    <button class="btn-secondary" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;" onclick="CartState.clear()">
+                        Limpar Pedido
+                    </button>
+                </div>
+
+                <!-- Tabela de Itens Dinâmica -->
+                <div class="items-table" id="orderPageItemsList">
+                    <!-- Injetado dinamicamente via pedido.js -->
+                </div>
+
+                <!-- Barra de Ações e Total -->
+                <div class="order-actions-bar">
+                    <div class="total-display-box">
+                        Total: <span id="orderPageTotalAmount">R$ 0,00</span>
+                    </div>
+
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <a href="index.html#cardapio" class="btn-secondary">
+                            + Adicionar Mais Sabores
+                        </a>
+                        <a href="carrinho.html" class="btn-primary">
+                            <span>Ir para Pagamento</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Adicionar Sabores Sugeridos Rapidamente -->
+            <div class="quick-add-section">
+                <h3 style="font-size: 1.2rem; font-weight: 800; color: var(--dark);">
+                    Quer adicionar mais uma fatia ou bebida?
+                </h3>
+                <p style="font-size: 0.88rem; color: var(--dark-muted);">Sabores campeões de pedidos na Tia Fatia:</p>
+
+                <div class="quick-grid" id="quickAddGrid">
+                    <!-- Injetado dinamicamente -->
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- DRAWER LATERAL DO CARRINHO -->
+    <div class="cart-drawer-overlay" id="cartDrawerOverlay" onclick="if(event.target === this) toggleCartDrawer()">
+        <div class="cart-drawer">
+            <div class="drawer-header">
+                <h3>Seu Pedido</h3>
+                <button class="btn-close-modal" onclick="toggleCartDrawer()">✕</button>
+            </div>
+            <div class="free-shipping-bar">
+                <div id="drawerFreeShippingText">Faltam <strong>R$ 35,00</strong> para Frete Grátis!</div>
+                <div class="free-shipping-progress">
+                    <div class="free-shipping-fill" id="drawerFreeShippingFill" style="width: 0%;"></div>
+                </div>
+            </div>
+            <div class="drawer-items-list" id="drawerCartItems"></div>
+            <div class="drawer-footer">
+                <div class="drawer-summary-row">
+                    <span>Subtotal:</span>
+                    <strong id="drawerSubtotal">R$ 0,00</strong>
+                </div>
+                <div class="drawer-summary-row total">
+                    <span>Total Estimado:</span>
+                    <span class="price" id="drawerTotal">R$ 0,00</span>
+                </div>
+                <a href="carrinho.html" class="btn-checkout-drawer">
+                    <span>Avançar para Pagamento</span>
+                </a>
             </div>
         </div>
     </div>
-    <div class="prosseguir">
-        <a href="carrinho.html"><button>Prosseguir</button></a>
+
+    <!-- MODAL DE CUSTOMIZAÇÃO -->
+    <div class="modal-overlay" id="productModalOverlay">
+        <div class="modal-content-card">
+            <div class="modal-header">
+                <h3>Personalizar Fatia</h3>
+                <button class="btn-close-modal" onclick="closeProductCustomModal()">✕</button>
+            </div>
+            <div class="modal-body-scroll">
+                <div class="modal-product-summary">
+                    <img id="modalProductImg" src="img/fatia_calabresa.png" alt="Produto" class="modal-product-img">
+                    <div class="modal-product-details">
+                        <h4 id="modalProductName">Nome do Produto</h4>
+                        <p id="modalProductDesc">Descrição dos ingredientes da fatia.</p>
+                        <span class="price" id="modalBasePrice">R$ 0,00</span>
+                    </div>
+                </div>
+                <div id="pizzaCustomFields">
+                    <div class="custom-section">
+                        <div class="custom-section-title">
+                            <strong>1. Escolha a Borda</strong>
+                            <span>Obrigatório</span>
+                        </div>
+                        <div class="options-list" id="borderOptionsList"></div>
+                    </div>
+                    <div class="custom-section">
+                        <div class="custom-section-title">
+                            <strong>2. Adicionais Extras</strong>
+                            <span>Opcional</span>
+                        </div>
+                        <div class="options-list additionals-grid" id="additionalsOptionsList"></div>
+                    </div>
+                    <div class="custom-section">
+                        <div class="custom-section-title">
+                            <strong>3. Molho de Acompanhamento</strong>
+                            <span>Cortesia da Casa</span>
+                        </div>
+                        <div class="options-list" id="sauceOptionsList"></div>
+                    </div>
+                </div>
+                <div class="custom-section">
+                    <div class="custom-section-title">
+                        <strong>Observações para a Cozinha</strong>
+                        <span>Opcional</span>
+                    </div>
+                    <textarea class="textarea-notes" id="modalNotes" placeholder="Ex: Fatia bem assadinha, tirar a cebola, etc."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="qty-control">
+                    <button class="qty-btn" onclick="changeCustomQty(-1)">-</button>
+                    <span class="qty-number" id="modalCustomQty">1</span>
+                    <button class="qty-btn" onclick="changeCustomQty(1)">+</button>
+                </div>
+                <button class="btn-add-modal" onclick="confirmAddCustomProduct()">
+                    <span>Adicionar ao Pedido</span>
+                    <strong id="modalAddBtnPrice">R$ 0,00</strong>
+                </button>
+            </div>
+        </div>
     </div>
-    <footer>
-        <img class="imgfooter" src="img/TIA-FATIA-LOGO_TITLE.png" alt="">
+
+    <!-- BARRA INFERIOR MOBILE -->
+    <div class="mobile-bottom-bar">
+        <div class="mobile-bottom-nav">
+            <a href="index.html" class="mobile-nav-item">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+                <span>Início</span>
+            </a>
+            <a href="index.html#cardapio" class="mobile-nav-item">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polygon points="12 8 8 12 12 16 16 12 12 8"></polygon>
+                </svg>
+                <span>Cardápio</span>
+            </a>
+            <button class="mobile-nav-item active" onclick="toggleCartDrawer()">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+                <span class="mobile-cart-badge" style="display: none;">0</span>
+                <span>Pedido</span>
+            </button>
+            <a href="entregas.html" class="mobile-nav-item">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="1" y="3" width="15" height="13"></rect>
+                    <polygon points="16 8 20 8 23 11 23 16 16 16 8"></polygon>
+                    <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                    <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                </svg>
+                <span>Entregas</span>
+            </a>
+            <a href="login.html" class="mobile-nav-item">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span>Perfil</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+                <p>&copy; 2026 Tia Fatia. Todas as fatias feitas artesanalmente.</p>
+                <p>Tia Fatia Delivery 🍕</p>
+            </div>
+        </div>
     </footer>
+
+    <script src="app.js"></script>
+    <script src="pedido.js"></script>
 </body>
 </html>

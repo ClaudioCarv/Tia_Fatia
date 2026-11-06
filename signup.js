@@ -1,22 +1,46 @@
+/**
+ * TIA FATIA - Lógica de Cadastro (signup.js)
+ */
+
+function togglePasswordVisibility(inputId, button) {
+    const input = document.getElementById(inputId);
+    if (!input) return;
+
+    if (input.type === 'password') {
+        input.type = 'text';
+        button.textContent = '🔒';
+    } else {
+        input.type = 'password';
+        button.textContent = '👁️';
+    }
+}
+
 document.getElementById('signupForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
-    const emailOrPhone = document.getElementById('emailOrPhone').value;
-    const password = document.getElementById('password').value;
-    const confirmPassword = document.getElementById('confirmPassword').value;
+    const name = document.getElementById('fullName').value.trim();
+    const emailOrPhone = document.getElementById('emailOrPhone').value.trim();
+    const password = document.getElementById('password').value.trim();
+    const confirmPassword = document.getElementById('confirmPassword').value.trim();
 
-    // Verificar se as senhas são iguais
     if (password !== confirmPassword) {
-        alert("As senhas não coincidem. Por favor, tente novamente.");
+        showToast('As senhas não coincidem. Por favor, tente novamente.', 'warning');
         return;
     }
 
-    // armazenamento dos dados de cadastro
-    const user = { emailOrPhone, password };
+    if (password.length < 6) {
+        showToast('A senha deve conter no mínimo 6 caracteres.', 'warning');
+        return;
+    }
+
+    // Armazenamento dos dados de cadastro
+    const user = { name, emailOrPhone, password };
     localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('user_session', JSON.stringify(user));
 
-    alert("Cadastro realizado com sucesso! Por favor faça o login.");
+    showToast(`Conta criada com sucesso para ${name}! Bem-vindo(a)! 🎉`, 'success');
 
-    // Redirecionar para a página de login
-    window.location.href = "login.html";
+    setTimeout(() => {
+        window.location.href = 'index.html';
+    }, 1200);
 });

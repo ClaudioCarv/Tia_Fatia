@@ -1,142 +1,308 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="toolkit.css">
-    <script src="carrinho.js"></script>
-    <script src="pedido.js"></script>
-    <script src="script.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#D62828">
+    <title>Tia Fatia 🍕 | Finalizar Pedido</title>
+    
+    <link rel="icon" href="img/Tia-fatia-logo.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="icon" href="img/Tia-fatia-logo.png" type="image/x-icon">
-    <title>Tia Fatia - Carrinho</title>
-
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav class="naveg">
-        <a href="index.html" onmouseover="trocarImagem('Nav_home_hover')" onmouseout="trocarImagem('home_nav')">
-            <img id="imagemNav" src="img/home_nav.png" alt="">
-        </a>
-        <a href="pedido.html" onmouseover="trocarImagem2('Nav_carrinho_hover')" onmouseout="trocarImagem2('carrinho_nav')">
-            <img id="imagemNav2" src="img/carrinho_nav.png" alt=""></a>
-        <a href="entregas.html"  onmouseover="trocarImagem3('Nav_entregas_hover')" onmouseout="trocarImagem3('entregas_nav')">
-            <img id="imagemNav3" src="img/entregas_nav.png" alt=""></a>
-        <a href="#Sobre"></a>
-    </nav>
 
-    <div class="imgindex">
-        <img class="logoS" src="img/logoS.png" alt="">
-    </div>
+    <!-- NAVBAR HEADER -->
+    <header class="header-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <img src="img/logoS.png" alt="Logo Tia Fatia" class="brand-logo">
+                <span>
+                    Tia Fatia
+                    <small>Pizza por Fatia</small>
+                </span>
+            </a>
 
-    <h1>Carrinho</h1>
-    <div class="pedidos">
-        <div class="order"></div>
-    </div>
-    <hr>
-    <!-- total do pedido -->
-    <h2>Total: R$<span id="total-amount">0</span></h2>
+            <nav class="nav-links">
+                <a href="index.html">Início</a>
+                <a href="index.html#cardapio">Cardápio</a>
+                <a href="pedido.html">Seu Pedido</a>
+                <a href="entregas.html">Acompanhar</a>
+            </nav>
 
-    <div class="cpedido">
-        <p>Seu pedido será:</p>
-        <span onclick="selecionarSpan(this)">Retirado</span>
-        <span onclick="selecionarSpan(this)">Entregue</span>
-    </div>
-    <div class="cspace">
+            <div class="nav-actions">
+                <a href="login.html" id="navUserBtn" class="btn-user-profile">
+                    <span>Entrar</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- SEÇÃO DE CHECKOUT -->
+    <main class="checkout-section">
         <div class="container">
-            <div class="info-section">
-                <div class="address-section">
-                    <div id="addressDisplay" onclick="openModal('addressModal')">
-                        <p><strong>Endereço:</strong></p>
-                        <p>Rua dos Lírios, 89, João Pessoa, PB</p>
-                        <span class="edit">Editar</span>
-                    </div>
-                </div>
-                <div class="payment-section">
-                    <p>Método de pagamento:</p>
-                    <div id="paymentDisplay" onclick="openModal('paymentModal')">
-                        <span class="card"></span>
-                        <span class="change">trocar</span>
-                    </div>
-                    <div class="payment-method">
-                        <span></span>
-                    </div>
-                </div>
+            
+            <div style="margin-bottom: 2rem;">
+                <span class="section-tag">Finalização Rápida</span>
+                <h1 class="section-title">Quase lá! Finalize seu Pedido</h1>
+                <p class="section-desc">Confirme o local de entrega e selecione como prefere pagar.</p>
             </div>
-        </div>
-    
-        <!-- Modal para endereço -->
-        <div id="addressModal" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="closeModal('addressModal')">&times;</span>
-                <h2>Endereço</h2>
-                <form id="addressForm">
-                    <label for="street">Rua:</label>
-                    <input type="text" id="street" name="street" placeholder="Digite a rua" required>
-                    
-                    <label for="number">Número:</label>
-                    <input type="text" id="number" name="number" placeholder="Digite o número" required oninput="validateNumber(this, 4)">
-                    
-                    <label for="neighborhood">Bairro:</label>
-                    <input type="text" id="neighborhood" name="neighborhood" placeholder="Digite o bairro" required>
-                    
-                    <label for="city">Complemento:</label>
-                    <input type="text" id="city" name="city" placeholder="Digite o Complemento" required>
-                    
-                    <label for="zip">CEP:</label>
-                    <input type="text" id="zip" name="zip" placeholder="Digite o CEP" required oninput="validateNumber(this, 8)">
-                    
-                    <button type="button" onclick="saveAddress()">Salvar</button>
-                </form>
-            </div>
-        </div>
-    
-        <!-- Modal para pagamento -->
-        <div id="paymentModal" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="closeModal('paymentModal')">&times;</span>
-                <p><strong>Método de Pagamento</strong></p>
-                <form id="paymentForm">
-                    <label>
-                        <input type="radio" name="payment" value="card" onclick="showPaymentFields()"> Cartão de Crédito
-                    </label>
-                    <div id="cardFields" style="display: none;">
-                        <label for="cardNumber">Número do Cartão:</label>
-                        <input type="text" id="cardNumber" name="cardNumber" maxlength="16" placeholder="Digite o número do cartão" pattern="\d*" inputmode="numeric" oninput="validateCardNumber(this)">
-                        
-                        <label for="cardName">Nome no Cartão:</label>
-                        <input type="text" id="cardName" name="cardName" placeholder="Digite o nome no cartão">
-                        
-                        <label for="cardExpiry">Validade:</label>
-                        <input type="text" id="cardExpiry" name="cardExpiry" placeholder="MM/AA" maxlength="5" pattern="\d{2}/\d{2}" inputmode="numeric" oninput="validateCardExpiry(this)">
-                        
-                        <label for="cardCVV">CVV:</label>
-                        <input type="text" id="cardCVV" name="cardCVV" maxlength="3" placeholder="CVV" pattern="\d*" inputmode="numeric" oninput="validateCardCVV(this)">
-                    </div>
-                    <label>
-                        <input type="radio" name="payment" value="pix" onclick="showPaymentFields()"> PIX
-                    </label>
-                    <div id="pixQRCode" style="display: none;">
-                        <img src="https://imgs.search.brave.com/gW3hG6LUoOEHDu7YI9Vt_TSng96W0lL6YQekJU4mtTQ/rs:fit:860:0:0/g:ce/aHR0cHM6Ly91c2Vy/LWltYWdlcy5naXRo/dWJ1c2VyY29udGVu/dC5jb20vMjM2OTAx/NDUvODMzNDg3Mzkt/YzRmODhkMDAtYTM2/MS0xMWVhLTkzMmUt/ZTcyMmUwYmQxYjY1/LnBuZw" alt="QR Code Fictício">
-                    </div>
-                    <button type="button" onclick="savePayment()">Salvar</button>
-                </form>
-            </div>
-        </div>
-        
-    </div>
 
-    <div class="prosseguir">
-        <a href="pedido.html"><button>Voltar</button></a>
-        <a href="entregas.html" onclick="finalizarPedido()"><button>Finalizar</button></a>
-    </div>
-    <footer>
-        <img class="imgfooter" src="img/TIA-FATIA-LOGO_TITLE.png" alt="">
+            <div class="checkout-grid">
+                
+                <!-- COLUNA PRINCIPAL: DADOS DE ENTREGA E PAGAMENTO -->
+                <div class="checkout-main-forms">
+                    
+                    <!-- ETAPA 1: ENTREGA OU RETIRADA -->
+                    <div class="checkout-card">
+                        <div class="checkout-card-header">
+                            <span class="step-number">1</span>
+                            <h2 class="checkout-card-title">Como deseja receber?</h2>
+                        </div>
+
+                        <!-- Alternador Entrega / Retirada -->
+                        <div class="delivery-tabs">
+                            <button type="button" class="delivery-tab-btn active" id="tabDelivery" onclick="setDeliveryMode(true)">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="1" y="3" width="15" height="13"></rect>
+                                    <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                                    <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                                    <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                                </svg>
+                                <span>Entrega em Domicílio</span>
+                                <small>35 a 50 min • Taxa R$ 5,00</small>
+                            </button>
+
+                            <button type="button" class="delivery-tab-btn" id="tabPickup" onclick="setDeliveryMode(false)">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                                </svg>
+                                <span>Retirar no Balcão</span>
+                                <small>15 a 20 min • Grátis</small>
+                            </button>
+                        </div>
+
+                        <!-- Formulário de Endereço (Exibido para Entrega) -->
+                        <div id="deliveryAddressForm">
+                            <div class="form-group">
+                                <label for="zip">CEP (Busca Automática):</label>
+                                <div class="input-with-button">
+                                    <input type="text" id="zip" placeholder="Ex: 58000-000" maxlength="9" oninput="formatCEP(this)">
+                                    <button type="button" class="btn-cep" onclick="buscarCep(document.getElementById('zip').value)">
+                                        Buscar CEP
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group" style="flex: 2;">
+                                    <label for="street">Rua / Logradouro:</label>
+                                    <input type="text" id="street" placeholder="Nome da sua rua" required>
+                                </div>
+                                <div class="form-group" style="flex: 1;">
+                                    <label for="number">Número:</label>
+                                    <input type="text" id="number" placeholder="Nº" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="neighborhood">Bairro:</label>
+                                    <input type="text" id="neighborhood" placeholder="Bairro" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="city">Cidade / UF:</label>
+                                    <input type="text" id="city" placeholder="João Pessoa - PB" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="complement">Complemento / Ponto de Referência (Opcional):</label>
+                                <input type="text" id="complement" placeholder="Apto 102, Bloco B, ao lado da padaria...">
+                            </div>
+                        </div>
+
+                        <!-- Mensagem para Retirada no Balcão -->
+                        <div id="pickupInfoBox" style="display: none; background: var(--secondary-light); border: 1px dashed var(--secondary); padding: 1.25rem; border-radius: var(--radius-md); text-align: center;">
+                            <h4 style="color: var(--secondary); font-weight: 800; margin-bottom: 0.3rem;">Retirada na Unidade Tia Fatia</h4>
+                            <p style="font-size: 0.88rem; color: var(--dark-muted); margin: 0;">
+                                📍 <strong>Av. Principal das Fatias, 1000 - Centro</strong><br>
+                                Seu pedido começará a ser assado agora e estará quentinho te esperando em cerca de 15 minutos!
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- ETAPA 2: FORMA DE PAGAMENTO -->
+                    <div class="checkout-card">
+                        <div class="checkout-card-header">
+                            <span class="step-number">2</span>
+                            <h2 class="checkout-card-title">Forma de Pagamento</h2>
+                        </div>
+
+                        <!-- Métodos de Pagamento em Grade -->
+                        <div class="payment-methods-grid">
+                            <div class="payment-method-card active" id="payPix" onclick="selectPaymentMethod('pix')">
+                                <span style="font-size: 1.8rem;">⚡</span>
+                                <span>PIX Instantâneo</span>
+                                <small style="color: var(--success); font-weight: 600;">Aprovação imediata</small>
+                            </div>
+
+                            <div class="payment-method-card" id="payCard" onclick="selectPaymentMethod('card')">
+                                <span style="font-size: 1.8rem;">💳</span>
+                                <span>Cartão de Crédito</span>
+                                <small>Até 3x sem juros</small>
+                            </div>
+
+                            <div class="payment-method-card" id="payCash" onclick="selectPaymentMethod('cash')">
+                                <span style="font-size: 1.8rem;">💵</span>
+                                <span>Dinheiro</span>
+                                <small>Pague na entrega</small>
+                            </div>
+                        </div>
+
+                        <!-- Conteúdo do PIX -->
+                        <div id="paymentContentPix" class="pix-box">
+                            <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem;">Escaneie o QR Code abaixo ou copie a chave:</h4>
+                            <!-- QR Code com a marca Tia Fatia -->
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=00020126580014BR.GOV.BCB.PIX0136tiafatia-delivery@email.com5204000053039865802BR5910Tia%20Fatia6011Joao%20Pessoa62070503***6304" alt="QR Code PIX" class="pix-qrcode-img">
+                            
+                            <div class="pix-copy-input">
+                                <input type="text" id="pixKeyText" value="00020126580014BR.GOV.BCB.PIX0136tiafatia-delivery@email.com" readonly>
+                                <button type="button" class="btn-cep" onclick="copyPixKey()">Copiar Código PIX</button>
+                            </div>
+                            <small style="display: block; margin-top: 0.5rem; color: var(--dark-muted);">O pagamento é compensado em menos de 10 segundos!</small>
+                        </div>
+
+                        <!-- Conteúdo do Cartão de Crédito -->
+                        <div id="paymentContentCard" style="display: none;">
+                            <!-- Preview do Cartão Virtual Interativo -->
+                            <div class="virtual-card-preview">
+                                <div class="vc-chip"></div>
+                                <div class="vc-number" id="vcNumberPreview">•••• •••• •••• ••••</div>
+                                <div class="vc-footer">
+                                    <div>
+                                        <small>Nome do Titular</small>
+                                        <strong id="vcNamePreview">SEU NOME AQUI</strong>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <small>Validade</small>
+                                        <strong id="vcExpiryPreview">MM/AA</strong>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="cardNumber">Número do Cartão:</label>
+                                <input type="text" id="cardNumber" placeholder="0000 0000 0000 0000" maxlength="19" oninput="formatCardNumber(this)">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="cardName">Nome Impresso no Cartão:</label>
+                                <input type="text" id="cardName" placeholder="Como está no cartão" oninput="updateCardName(this.value)">
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="cardExpiry">Validade:</label>
+                                    <input type="text" id="cardExpiry" placeholder="MM/AA" maxlength="5" oninput="formatExpiry(this)">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cardCVV">CVV:</label>
+                                    <input type="password" id="cardCVV" placeholder="123" maxlength="4">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Conteúdo do Dinheiro -->
+                        <div id="paymentContentCash" style="display: none; background: var(--bg-page); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border);">
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label for="cashChange">Precisa de troco para quanto? (Deixe em branco se tiver o valor exato):</label>
+                                <input type="text" id="cashChange" placeholder="Ex: R$ 50,00 ou R$ 100,00">
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- COLUNA LATERAL: RESUMO DO PEDIDO E FINALIZAÇÃO -->
+                <div class="checkout-sidebar">
+                    <div class="checkout-summary-box">
+                        <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--dark); margin-bottom: 1rem;">
+                            Resumo do Pedido
+                        </h3>
+
+                        <!-- Lista de Itens Compacta -->
+                        <div id="checkoutSummaryItems" style="max-height: 240px; overflow-y: auto; display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1rem;">
+                            <!-- Injetado dinamicamente -->
+                        </div>
+
+                        <!-- Campo de Cupom de Desconto -->
+                        <div class="coupon-row">
+                            <input type="text" id="couponInput" placeholder="Cupom (ex: TIAFATIA10)">
+                            <button type="button" class="btn-apply-coupon" onclick="applyCouponCode()">Aplicar</button>
+                        </div>
+                        <div id="couponAppliedBadge" style="display: none; font-size: 0.78rem; color: var(--success); font-weight: 700; margin-top: -0.6rem; margin-bottom: 0.8rem;">
+                            ✓ Cupom aplicado com sucesso!
+                        </div>
+
+                        <!-- Linhas de Valores -->
+                        <div class="summary-rows">
+                            <div class="summary-row">
+                                <span>Subtotal</span>
+                                <strong id="summarySubtotal">R$ 0,00</strong>
+                            </div>
+                            <div class="summary-row discount" id="summaryDiscountRow" style="display: none;">
+                                <span>Desconto do Cupom</span>
+                                <strong id="summaryDiscount">- R$ 0,00</strong>
+                            </div>
+                            <div class="summary-row">
+                                <span>Taxa de Entrega</span>
+                                <strong id="summaryShipping">R$ 5,00</strong>
+                            </div>
+                            <div class="summary-row total-checkout">
+                                <span>Total Final</span>
+                                <span id="summaryGrandTotal">R$ 0,00</span>
+                            </div>
+                        </div>
+
+                        <!-- Botão Principal de Conclusão -->
+                        <button type="button" class="btn-confirm-order" onclick="submitFinalOrder()">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            <span>Confirmar e Fazer Pedido</span>
+                        </button>
+
+                        <!-- Botão Enviar por WhatsApp -->
+                        <button type="button" class="btn-whatsapp-order" onclick="submitOrderViaWhatsApp()">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.09-.39-.13-.56.13-.17.25-.64.81-.79.98-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.24-.75-.67-1.25-1.49-1.4-1.74-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.44 1.03 2.61c.13.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.3z"/>
+                            </svg>
+                            <span>Enviar Resumo no WhatsApp</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+                <p>&copy; 2026 Tia Fatia. Pagamento e dados 100% criptografados.</p>
+                <p>Tia Fatia Delivery 🍕</p>
+            </div>
+        </div>
     </footer>
-</body>
-</html>
 
+    <script src="app.js"></script>
+    <script src="carrinho.js"></script>
 </body>
 </html>

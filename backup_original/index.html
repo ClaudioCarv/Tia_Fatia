@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="toolkit.css">
+    <script src="script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="icon" href="img/Tia-fatia-logo.png" type="image/x-icon">
+    <title>Tia Fatia</title>
+</head>
+<body>
+<!-- Navegação -->
+    <nav class="naveg">
+        <a href="#home" onmouseover="trocarImagem('Nav_home_hover')" onmouseout="trocarImagem('home_nav')">
+            <img id="imagemNav" src="img/home_nav.png" alt="">
+        </a>
+        <a href="pedido.html" onmouseover="trocarImagem2('Nav_carrinho_hover')" onmouseout="trocarImagem2('carrinho_nav')">
+            <img id="imagemNav2" src="img/carrinho_nav.png" alt=""></a>
+        <a href="entregas.html"  onmouseover="trocarImagem3('Nav_entregas_hover')" onmouseout="trocarImagem3('entregas_nav')">
+            <img id="imagemNav3" src="img/entregas_nav.png" alt=""></a>
+        <a href="#Sobre"></a>
+    </nav>
+
+    <!-- Tela de sabores -->
+    <div id="home" class="imgindex">
+        <img class="logoS" src="img/logoS.png" alt="">
+    </div>
+<!-- Salgados -->
+    <h1 class="t1">Sabores</h1>
+    
+    <h1 class="titulos">Salgados</h1>
+    <div class="sabores">
+        <div class="saboresitem" data-name="Calabresa" data-price="5.99">
+            <img class="sabimg" src="img/fatia_calabresa.png" alt="fatia de pizza Calabresa">
+                <h2>Calabresa</h2>
+                <h3>R$ 5.99</h3>
+                <button class="add-to-cart"  onclick="addToCart('Fatia de Calabresa', 5.99), exibirPopUp()">Adicionar ao Pedido</button>
+        </div>
+        <div class="saboresitem" data-name="Marguerita" data-price="6.25">
+            <img class="sabimg" src="img/fatia_marguerita.png" alt="fatia de pizza Marguerita">
+            <h2>Marguerita</h2>
+            <h3>R$ 6.50</h3>
+            <button class="add-to-cart" onclick="addToCart('Fatia de Marguerita', 6.50)">Adicionar ao Pedido</button>
+        </div>
+        <div class="saboresitem" data-name="Queijo" data-price="6.25">
+            <img class="sabimg" src="img/fatia_queijo.png" alt="Fatia de pizza de Queijo">
+            <h2>Queijo</h2>
+            <h3>R$ 6.25</h3>
+            <button class="add-to-cart" onclick="addToCart('Fatia de Queijo', 25)">Adicionar ao Pedido</button>
+        </div>
+    </div>
+    <!-- Doces -->
+    <h1 class="titulos">Doces</h1>
+    <div class="saboresitem">
+        <div class="sabores">
+            <div class="saboresitem" data-name="Queijo" data-price="6.25">
+                <img class="sabimg" src="img/fatia_doce_chocolate.png" alt="Fatia de pizza de Chocolate">
+                <h2>Chocolate</h2>
+                <h3>R$ 8.95</h3>
+                <button class="add-to-cart" onclick="addToCart('Fatia de Chocolate', 8.95)">Adicionar ao Pedido</button>
+            </div>
+            <div class="saboresitem" data-name="Queijo" data-price="6.25">
+                <img class="sabimg" src="img/fatia_doce_morango.jpg" alt="Fatia de pizza de Morango">
+                <h2>Morango</h2>
+                <h3>R$ 10.25</h3>
+                <button class="add-to-cart" onclick="addToCart('Fatia de Morango', 10.25)">Adicionar ao Pedido</button>
+            </div>
+            <div class="saboresitem" data-name="Queijo" data-price="6.25">
+                <img class="sabimg" src="img/fatia_doce_romeu.png" alt="Fatia de pizza Romeu e Julieta">
+                <h2>Romeu e Julieta</h2>
+                <h3>R$ 9.50</h3>
+                <button class="add-to-cart" onclick="addToCart('Fatia de pizza Romeu e Julieta', 9.50)">Adicionar ao Pedido</button>
+            </div>
+        </div>
+    </div>
+    <!-- Combos -->
+    <h1 class="titulos">Combos</h1>
+    <div class="saboresitem">
+        <div class="sabores">
+            <div class="saboresitem" id="Combo">
+                <img class="sabimg" src="img/combos_fundo.png" alt="Combo - 2 Salgados + Refrigerante">
+                <h2>2 Salgados + Refri</h2>
+                <h3>R$ 8.50</h3>
+                <button id="Combo" class="add-to-cart"  onclick="addToCart('Combo - 2 Salgados + Refrigerante', 8.50), exibirPopUp()">Adicionar ao Pedido</button>
+            </div>
+            <div class="saboresitem" id="Combo">
+                <img class="sabimg" src="img/combos_fundo.png" alt="Combo - 2 Doces + 1 Salgado + Suco">
+                <h2>2 Doces + 1 Salgado + Suco</h2>
+                <h3>R$ 10.00</h3>
+                <button id="Combo" class="add-to-cart"  onclick="addToCart('Combo - 2 Doces + 1 Salgado + Suco', 10.00), exibirPopUp()">Adicionar ao Pedido</button>
+            </div>
+            <div class="saboresitem" id="Combo">
+                <img class="sabimg" src="img/combos_fundo.png" alt="Combo - 1 Doce + Bebida">
+                <h2>1 Doce + Bebida</h2>
+                <h3>R$ 6.00</h3>
+                <button  class="add-to-cart"  onclick="addToCart('Combo - 1 Doce + Bebida', 6.00), exibirPopUp()">Adicionar ao Pedido</button>
+            </div>
+        </div>
+    </div>
+    <!-- Bebidas -->
+    <h1 class="titulos">Bebidas</h1>
+    <div class="saboresitem">
+        <div class="sabores">
+            <div class="saboresitem" id="Bebida">
+                <img class="sabimg" src="img/copo_refrigerante.png" alt="">
+                <h2>Refrigerante</h2>
+                <h3>R$ 3.00</h3>
+                <button  class="add-to-cart"  onclick="addToCart('Dollynho', 3.00), exibirPopUp()">Adicionar ao Pedido</button>
+            </div>
+            <div class="saboresitem" id="Bebida">
+                <img class="sabimg" src="img/Sucos_naturais.png" alt="">
+                <h2>Sucos naturais</h2>
+                <h3>R$ 4.00</h3>
+                <button id="Bebida" class="add-to-cart"  onclick="addToCart('Suco de Maracuja', 4.00), exibirPopUp()">Adicionar ao Pedido</button>
+            </div>
+            <div class="saboresitem" id="Bebida">
+                <img class="sabimg" src="img/vinho.png" alt="">
+                <h2>Vinhos</h2>
+                <h3>R$ 50.00</h3>
+                <button id="Bebida" class="add-to-cart"  onclick="addToCart('Vinho', 50.00), exibirPopUp()">Adicionar ao Pedido</button>
+            </div>
+        </div>
+    </div>
+<footer>
+    <img class="imgfooter" src="img/TIA-FATIA-LOGO_TITLE.png" alt="">
+</footer>
+
+</body>
+</html>

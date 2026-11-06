@@ -1,50 +1,87 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="toolkit.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="img/Tia-fatia-logo.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#D62828">
+    <title>Tia Fatia 🍕 | Entrar na sua Conta</title>
+    
+    <link rel="icon" href="img/Tia-fatia-logo.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <title>Tia Fatia - Login</title>
-    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <!-- Tela de carregamento com logo -->
-    <div  id="loader">
-        <img class="logo" src="img/Tia-fatia-logo.png" alt="logo tia fatia">
-    </div>
+<body style="background: radial-gradient(circle at top, #FFF8E7 0%, #FAF7F2 100%);">
 
-    <div class="imgindex">
-        <img class="logoS" src="img/logoS.png" alt="">
-    </div>
-    <h1 class="t1">Entrar</h1>
-
-    <div class="divcontainer">
-        <div class="form-container">
-            <form id="loginForm">
-                <div class="input-group">
-                    <label for="email">Email ou Telefone:</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="input-group">
-                    <label for="password">Senha:</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-                <button type="submit" class="btn">Entrar</button>
-            </form>
-            <div class="grid">
-            <p>Não tem uma conta? <a href="register.html">Cadastre-se</a></p>
-            </div>
+    <!-- NAVBAR SIMPLES -->
+    <header class="header-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <img src="img/logoS.png" alt="Logo Tia Fatia" class="brand-logo">
+                <span>
+                    Tia Fatia
+                    <small>Pizza por Fatia</small>
+                </span>
+            </a>
+            <a href="index.html" class="btn-secondary" style="padding: 0.4rem 1rem; font-size: 0.85rem;">
+                Voltar ao Cardápio
+            </a>
         </div>
-    </div>
-    <script src="login.js"></script>
-</body>
-</html>
+    </header>
 
-    
+    <!-- WRAPPER CENTRALIZADO DE LOGIN -->
+    <main class="auth-wrapper">
+        <div class="auth-card">
+            
+            <a href="index.html">
+                <img src="img/logoS.png" alt="Logo Tia Fatia" class="auth-logo">
+            </a>
+
+            <h1 class="auth-title">Bem-vindo(a) de volta!</h1>
+            <p class="auth-subtitle">Acesse sua conta para pedir suas fatias favoritas com agilidade.</p>
+
+            <form id="loginForm" class="auth-form">
+                <div class="form-group">
+                    <label for="email">E-mail ou Telefone:</label>
+                    <input type="text" id="email" placeholder="seu@email.com ou (83) 99999-9999" required autocomplete="username">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Senha:</label>
+                    <div class="password-input-wrap">
+                        <input type="password" id="password" placeholder="Digite sua senha" required autocomplete="current-password">
+                        <button type="button" class="btn-toggle-password" onclick="togglePasswordVisibility('password', this)" aria-label="Mostrar ou esconder senha">
+                            👁️
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1rem; justify-content: center;">
+                    <span>Entrar na Minha Conta</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </button>
+            </form>
+
+            <div class="auth-divider">
+                <span>ou</span>
+            </div>
+
+            <!-- Botão de Acesso Rápido como Visitante -->
+            <button type="button" class="btn-secondary" style="width: 100%; justify-content: center; font-size: 0.9rem;" onclick="loginAsGuest()">
+                Continuar sem conta (Pedir Agora)
+            </button>
+
+            <p class="auth-footer-text">
+                Não tem uma conta ainda? <a href="register.html">Cadastre-se grátis</a>
+            </p>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+    <script src="login.js"></script>
 </body>
 </html>

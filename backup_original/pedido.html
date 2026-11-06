@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="toolkit.css">
+    <script src="pedido.js"></script>
+    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="icon" href="img/Tia-fatia-logo.png" type="image/x-icon">
+    <title>Tia Fatia - Pedidos</title>
+</head>
+<body>
+    <nav class="naveg">
+        <a href="index.html" onmouseover="trocarImagem('Nav_home_hover')" onmouseout="trocarImagem('home_nav')">
+            <img id="imagemNav" src="img/home_nav.png" alt="">
+        </a>
+        <a href="pedido.html" onmouseover="trocarImagem2('Nav_carrinho_hover')" onmouseout="trocarImagem2('carrinho_nav')">
+            <img id="imagemNav2" src="img/carrinho_nav.png" alt=""></a>
+        <a href="entregas.html"  onmouseover="trocarImagem3('Nav_entregas_hover')" onmouseout="trocarImagem3('entregas_nav')">
+            <img id="imagemNav3" src="img/entregas_nav.png" alt=""></a>
+        <a href="#Sobre"></a>
+    </nav>
+    <div class="imgindex">
+        <img class="logoS" src="img/logoS.png" alt="">
+    </div>
+    
+    <h1 class="t1">Seu Pedido</h1>
+    <div class="saboresitem" >
+        <h1>Pedidos</h1>
+    </div>
+    <div class="pedidos">
+        <div class="order"></div>
+    </div>
+    <!-- total do pedido -->
+    <hr>
+    <h2>Total: R$<span id="total-amount">0</span></h2>
+    <div class="prosseguir">
+        <button id="clear-order">Limpar Pedido</button>
+    </div>
+    <h2 class="verde">Recheios de borda</h2>
+    
+    <div class="recheios">    
+        <span>Catupiry</span>
+        <span>Alpino</span>
+        <span>Cheddar</span>
+        <span>Nenhum</span>
+    </div>
+    <div class="space">
+        <div class="adds">
+            <!-- Adicionais -->
+            <h2 class="verde">Adicionais</h2>
+            <hr>
+            <div class="spadds">
+                <span>Queijo</span>
+                <span>Tomate</span>
+                <span>Molho pesto</span>
+                <span>Azeitona</span>
+                <span>Manjericão</span>
+                <span>Orégano</span>
+                <span>Cream Cheese</span>
+            </div>
+        </div>
+        <div class="adds">
+            <!-- Molhos -->
+            <h2 class="verde">Molhos</h2>
+            <hr>
+            <div class="spadds">
+                <span>Maionese</span>
+                <span>Geleia de Pimenta</span>
+                <span>Agridoce</span>
+                <span>Maionese da Casa</span>
+                <span>Queijo Parmesão</span>
+            </div>
+        </div>
+    </div>
+    <div class="prosseguir">
+        <a href="carrinho.html"><button>Prosseguir</button></a>
+    </div>
+    <footer>
+        <img class="imgfooter" src="img/TIA-FATIA-LOGO_TITLE.png" alt="">
+    </footer>
+</body>
+</html>

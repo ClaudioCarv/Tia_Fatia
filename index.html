@@ -1,133 +1,465 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="toolkit.css">
-    <script src="script.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#D62828">
+    <meta name="description" content="Tia Fatia - A melhor pizza vendida por fatia! Prática, saborosa e com ingredientes selecionados. Peça online!">
+    
+    <title>Tia Fatia 🍕 | Pizzaria por Fatia Artesanal</title>
+    
+    <!-- Favicon Original Preservado -->
+    <link rel="icon" href="img/Tia-fatia-logo.png" type="image/png">
+    
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="icon" href="img/Tia-fatia-logo.png" type="image/x-icon">
-    <title>Tia Fatia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Estilos do Novo Design System -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<!-- Navegação -->
-    <nav class="naveg">
-        <a href="#home" onmouseover="trocarImagem('Nav_home_hover')" onmouseout="trocarImagem('home_nav')">
-            <img id="imagemNav" src="img/home_nav.png" alt="">
-        </a>
-        <a href="pedido.html" onmouseover="trocarImagem2('Nav_carrinho_hover')" onmouseout="trocarImagem2('carrinho_nav')">
-            <img id="imagemNav2" src="img/carrinho_nav.png" alt=""></a>
-        <a href="entregas.html"  onmouseover="trocarImagem3('Nav_entregas_hover')" onmouseout="trocarImagem3('entregas_nav')">
-            <img id="imagemNav3" src="img/entregas_nav.png" alt=""></a>
-        <a href="#Sobre"></a>
-    </nav>
 
-    <!-- Tela de sabores -->
-    <div id="home" class="imgindex">
-        <img class="logoS" src="img/logoS.png" alt="">
-    </div>
-<!-- Salgados -->
-    <h1 class="t1">Sabores</h1>
-    
-    <h1 class="titulos">Salgados</h1>
-    <div class="sabores">
-        <div class="saboresitem" data-name="Calabresa" data-price="5.99">
-            <img class="sabimg" src="img/fatia_calabresa.png" alt="fatia de pizza Calabresa">
-                <h2>Calabresa</h2>
-                <h3>R$ 5.99</h3>
-                <button class="add-to-cart"  onclick="addToCart('Fatia de Calabresa', 5.99), exibirPopUp()">Adicionar ao Pedido</button>
-        </div>
-        <div class="saboresitem" data-name="Marguerita" data-price="6.25">
-            <img class="sabimg" src="img/fatia_marguerita.png" alt="fatia de pizza Marguerita">
-            <h2>Marguerita</h2>
-            <h3>R$ 6.50</h3>
-            <button class="add-to-cart" onclick="addToCart('Fatia de Marguerita', 6.50)">Adicionar ao Pedido</button>
-        </div>
-        <div class="saboresitem" data-name="Queijo" data-price="6.25">
-            <img class="sabimg" src="img/fatia_queijo.png" alt="Fatia de pizza de Queijo">
-            <h2>Queijo</h2>
-            <h3>R$ 6.25</h3>
-            <button class="add-to-cart" onclick="addToCart('Fatia de Queijo', 25)">Adicionar ao Pedido</button>
-        </div>
-    </div>
-    <!-- Doces -->
-    <h1 class="titulos">Doces</h1>
-    <div class="saboresitem">
-        <div class="sabores">
-            <div class="saboresitem" data-name="Queijo" data-price="6.25">
-                <img class="sabimg" src="img/fatia_doce_chocolate.png" alt="Fatia de pizza de Chocolate">
-                <h2>Chocolate</h2>
-                <h3>R$ 8.95</h3>
-                <button class="add-to-cart" onclick="addToCart('Fatia de Chocolate', 8.95)">Adicionar ao Pedido</button>
-            </div>
-            <div class="saboresitem" data-name="Queijo" data-price="6.25">
-                <img class="sabimg" src="img/fatia_doce_morango.jpg" alt="Fatia de pizza de Morango">
-                <h2>Morango</h2>
-                <h3>R$ 10.25</h3>
-                <button class="add-to-cart" onclick="addToCart('Fatia de Morango', 10.25)">Adicionar ao Pedido</button>
-            </div>
-            <div class="saboresitem" data-name="Queijo" data-price="6.25">
-                <img class="sabimg" src="img/fatia_doce_romeu.png" alt="Fatia de pizza Romeu e Julieta">
-                <h2>Romeu e Julieta</h2>
-                <h3>R$ 9.50</h3>
-                <button class="add-to-cart" onclick="addToCart('Fatia de pizza Romeu e Julieta', 9.50)">Adicionar ao Pedido</button>
-            </div>
-        </div>
-    </div>
-    <!-- Combos -->
-    <h1 class="titulos">Combos</h1>
-    <div class="saboresitem">
-        <div class="sabores">
-            <div class="saboresitem" id="Combo">
-                <img class="sabimg" src="img/combos_fundo.png" alt="Combo - 2 Salgados + Refrigerante">
-                <h2>2 Salgados + Refri</h2>
-                <h3>R$ 8.50</h3>
-                <button id="Combo" class="add-to-cart"  onclick="addToCart('Combo - 2 Salgados + Refrigerante', 8.50), exibirPopUp()">Adicionar ao Pedido</button>
-            </div>
-            <div class="saboresitem" id="Combo">
-                <img class="sabimg" src="img/combos_fundo.png" alt="Combo - 2 Doces + 1 Salgado + Suco">
-                <h2>2 Doces + 1 Salgado + Suco</h2>
-                <h3>R$ 10.00</h3>
-                <button id="Combo" class="add-to-cart"  onclick="addToCart('Combo - 2 Doces + 1 Salgado + Suco', 10.00), exibirPopUp()">Adicionar ao Pedido</button>
-            </div>
-            <div class="saboresitem" id="Combo">
-                <img class="sabimg" src="img/combos_fundo.png" alt="Combo - 1 Doce + Bebida">
-                <h2>1 Doce + Bebida</h2>
-                <h3>R$ 6.00</h3>
-                <button  class="add-to-cart"  onclick="addToCart('Combo - 1 Doce + Bebida', 6.00), exibirPopUp()">Adicionar ao Pedido</button>
-            </div>
-        </div>
-    </div>
-    <!-- Bebidas -->
-    <h1 class="titulos">Bebidas</h1>
-    <div class="saboresitem">
-        <div class="sabores">
-            <div class="saboresitem" id="Bebida">
-                <img class="sabimg" src="img/copo_refrigerante.png" alt="">
-                <h2>Refrigerante</h2>
-                <h3>R$ 3.00</h3>
-                <button  class="add-to-cart"  onclick="addToCart('Dollynho', 3.00), exibirPopUp()">Adicionar ao Pedido</button>
-            </div>
-            <div class="saboresitem" id="Bebida">
-                <img class="sabimg" src="img/Sucos_naturais.png" alt="">
-                <h2>Sucos naturais</h2>
-                <h3>R$ 4.00</h3>
-                <button id="Bebida" class="add-to-cart"  onclick="addToCart('Suco de Maracuja', 4.00), exibirPopUp()">Adicionar ao Pedido</button>
-            </div>
-            <div class="saboresitem" id="Bebida">
-                <img class="sabimg" src="img/vinho.png" alt="">
-                <h2>Vinhos</h2>
-                <h3>R$ 50.00</h3>
-                <button id="Bebida" class="add-to-cart"  onclick="addToCart('Vinho', 50.00), exibirPopUp()">Adicionar ao Pedido</button>
-            </div>
-        </div>
-    </div>
-<footer>
-    <img class="imgfooter" src="img/TIA-FATIA-LOGO_TITLE.png" alt="">
-</footer>
+    <!-- NAVBAR HEADER MODERNA (STICKY & GLASS) -->
+    <header class="header-nav">
+        <div class="nav-container">
+            <!-- Brand / Logo Original -->
+            <a href="index.html" class="nav-brand">
+                <img src="img/logoS.png" alt="Logo Tia Fatia" class="brand-logo">
+                <span>
+                    Tia Fatia
+                    <small>Pizza por Fatia</small>
+                </span>
+            </a>
 
+            <!-- Navegação Desktop -->
+            <nav class="nav-links">
+                <a href="#inicio" class="active">Início</a>
+                <a href="#cardapio">Cardápio</a>
+                <a href="#combos">Combos</a>
+                <a href="pedido.html">Personalizar</a>
+                <a href="entregas.html">Acompanhar Pedido</a>
+            </nav>
+
+            <!-- Ações: Carrinho & Login -->
+            <div class="nav-actions">
+                <!-- Botão de Carrinho com Badge Reativo -->
+                <button class="btn-icon" onclick="toggleCartDrawer()" title="Ver Carrinho" aria-label="Abrir Carrinho">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="cart-badge" style="display: none;">0</span>
+                </button>
+
+                <!-- Botão de Login / Usuário -->
+                <a href="login.html" id="navUserBtn" class="btn-user-profile">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span>Entrar</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION MODERNA & VIBRANTE -->
+    <section class="hero-section" id="inicio">
+        <div class="container">
+            <div class="hero-grid">
+                <!-- Coluna de Texto e Chamadas -->
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <span>🔥 Forno a Lenha & Massa Artesanal</span>
+                    </div>
+                    <h1 class="hero-title">
+                        A melhor pizza <span class="highlight">por fatia</span> que você vai provar!
+                    </h1>
+                    <p class="hero-subtitle">
+                        Chega de pedir uma pizza inteira de um sabor só. Na <strong>Tia Fatia</strong> você monta seu pedido misturando salgadas, doces, bordas vulcão e recebe tudo quentinho em casa!
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#cardapio" class="btn-primary">
+                            <span>Ver Cardápio Completo</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </a>
+                        <a href="#combos" class="btn-secondary">
+                            <span>Combos em Oferta</span>
+                        </a>
+                    </div>
+                    <div class="hero-features">
+                        <div class="hero-feature-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                            <span>Entrega em 30 a 45 min</span>
+                        </div>
+                        <div class="hero-feature-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                            </svg>
+                            <span>Fatias a partir de R$ 5,99</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coluna Visual com Animação da Logo e Fatia -->
+                <div class="hero-image-wrap">
+                    <div class="hero-circle-bg"></div>
+                    <img src="img/fatia_calabresa.png" alt="Fatia Calabresa Especial" class="hero-main-img">
+                    
+                    <!-- Cards Flutuantes com Micro-Interações -->
+                    <div class="floating-card card-1">
+                        <span class="floating-card-icon">🧀</span>
+                        <div class="floating-card-text">
+                            <p>Borda Recheada</p>
+                            <strong>Catupiry & Cheddar</strong>
+                        </div>
+                    </div>
+
+                    <div class="floating-card card-2">
+                        <span class="floating-card-icon">⭐</span>
+                        <div class="floating-card-text">
+                            <p>Avaliação dos Clientes</p>
+                            <strong>4.9 / 5.0 (2.4k pedidos)</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BARRA DE DIFERENCIAIS / BENEFÍCIOS -->
+    <section class="benefits-bar">
+        <div class="container">
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🍕</div>
+                    <div class="benefit-info">
+                        <h4>Por Fatia do Seu Jeito</h4>
+                        <p>Combine diferentes sabores no mesmo pedido.</p>
+                    </div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">⚡</div>
+                    <div class="benefit-info">
+                        <h4>Entrega Super Rápida</h4>
+                        <p>Embalagens térmicas que mantêm a crocância.</p>
+                    </div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🧀</div>
+                    <div class="benefit-info">
+                        <h4>Bordas Especiais</h4>
+                        <p>Catupiry legítimo, Cheddar e Chocolate Alpino.</p>
+                    </div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">💳</div>
+                    <div class="benefit-info">
+                        <h4>PIX & Cartão Sem Fila</h4>
+                        <p>Pagamento 100% seguro com frete grátis > R$ 35.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO PRINCIPAL DO CARDÁPIO & FILTROS -->
+    <section class="menu-section" id="cardapio">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Cardápio Artesanal</span>
+                <h2 class="section-title">Escolha suas Fatias Favoritas</h2>
+                <p class="section-desc">Massa crocante por fora, macia por dentro e recheios transbordando sabor.</p>
+            </div>
+
+            <!-- Controles do Cardápio: Categorias & Live Search -->
+            <div class="menu-controls">
+                <div class="category-tabs">
+                    <button class="tab-btn active" data-category="todos">
+                        <span>✨ Todos</span>
+                    </button>
+                    <button class="tab-btn" data-category="salgadas">
+                        <span>🍕 Salgadas</span>
+                    </button>
+                    <button class="tab-btn" data-category="doces">
+                        <span>🍫 Doces</span>
+                    </button>
+                    <button class="tab-btn" data-category="combos" id="combos">
+                        <span>⭐ Combos</span>
+                    </button>
+                    <button class="tab-btn" data-category="bebidas">
+                        <span>🥤 Bebidas</span>
+                    </button>
+                </div>
+
+                <div class="search-box">
+                    <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <input type="text" id="searchMenuInput" placeholder="Buscar sabor (ex: calabresa, morango)..." aria-label="Buscar sabor">
+                </div>
+            </div>
+
+            <!-- Grade de Produtos Dinâmica -->
+            <div class="products-grid" id="productsGrid">
+                <!-- Renderizado dinamicamente via app.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL DE CUSTOMIZAÇÃO DO PRODUTO (BORDA, ADICIONAIS, ETC) -->
+    <div class="modal-overlay" id="productModalOverlay">
+        <div class="modal-content-card">
+            <!-- Cabeçalho do Modal -->
+            <div class="modal-header">
+                <h3>Personalizar Fatia</h3>
+                <button class="btn-close-modal" onclick="closeProductCustomModal()" aria-label="Fechar Modal">✕</button>
+            </div>
+
+            <!-- Conteúdo Scrollável -->
+            <div class="modal-body-scroll">
+                <!-- Resumo do Produto Selecionado -->
+                <div class="modal-product-summary">
+                    <img id="modalProductImg" src="img/fatia_calabresa.png" alt="Produto" class="modal-product-img">
+                    <div class="modal-product-details">
+                        <h4 id="modalProductName">Nome do Produto</h4>
+                        <p id="modalProductDesc">Descrição dos ingredientes da fatia.</p>
+                        <span class="price" id="modalBasePrice">R$ 0,00</span>
+                    </div>
+                </div>
+
+                <!-- Campos de Personalização exclusivos para Pizzas -->
+                <div id="pizzaCustomFields">
+                    <!-- Escolha de Borda -->
+                    <div class="custom-section">
+                        <div class="custom-section-title">
+                            <strong>1. Escolha a Borda</strong>
+                            <span>Obrigatório</span>
+                        </div>
+                        <div class="options-list" id="borderOptionsList">
+                            <!-- Injetado dinamicamente -->
+                        </div>
+                    </div>
+
+                    <!-- Escolha de Adicionais Extras -->
+                    <div class="custom-section">
+                        <div class="custom-section-title">
+                            <strong>2. Adicionais Extras</strong>
+                            <span>Opcional</span>
+                        </div>
+                        <div class="options-list additionals-grid" id="additionalsOptionsList">
+                            <!-- Injetado dinamicamente -->
+                        </div>
+                    </div>
+
+                    <!-- Molho de Acompanhamento Cortesia -->
+                    <div class="custom-section">
+                        <div class="custom-section-title">
+                            <strong>3. Molho de Acompanhamento</strong>
+                            <span>Cortesia da Casa</span>
+                        </div>
+                        <div class="options-list" id="sauceOptionsList">
+                            <!-- Injetado dinamicamente -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Observações -->
+                <div class="custom-section">
+                    <div class="custom-section-title">
+                        <strong>Observações para a Cozinha</strong>
+                        <span>Opcional</span>
+                    </div>
+                    <textarea class="textarea-notes" id="modalNotes" placeholder="Ex: Fatia bem assadinha, tirar a cebola, etc."></textarea>
+                </div>
+            </div>
+
+            <!-- Rodapé do Modal com Contador e Botão de Adicionar -->
+            <div class="modal-footer">
+                <div class="qty-control">
+                    <button class="qty-btn" onclick="changeCustomQty(-1)">-</button>
+                    <span class="qty-number" id="modalCustomQty">1</span>
+                    <button class="qty-btn" onclick="changeCustomQty(1)">+</button>
+                </div>
+                <button class="btn-add-modal" onclick="confirmAddCustomProduct()">
+                    <span>Adicionar ao Pedido</span>
+                    <strong id="modalAddBtnPrice">R$ 0,00</strong>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- DRAWER LATERAL DO CARRINHO (CART DRAWER) -->
+    <div class="cart-drawer-overlay" id="cartDrawerOverlay" onclick="if(event.target === this) toggleCartDrawer()">
+        <div class="cart-drawer">
+            <!-- Cabeçalho do Drawer -->
+            <div class="drawer-header">
+                <h3>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    Seu Pedido
+                </h3>
+                <button class="btn-close-modal" onclick="toggleCartDrawer()">✕</button>
+            </div>
+
+            <!-- Barra de Frete Grátis -->
+            <div class="free-shipping-bar">
+                <div id="drawerFreeShippingText">Faltam <strong>R$ 35,00</strong> para Frete Grátis!</div>
+                <div class="free-shipping-progress">
+                    <div class="free-shipping-fill" id="drawerFreeShippingFill" style="width: 0%;"></div>
+                </div>
+            </div>
+
+            <!-- Lista de Itens do Carrinho -->
+            <div class="drawer-items-list" id="drawerCartItems">
+                <!-- Injetado dinamicamente -->
+            </div>
+
+            <!-- Rodapé com Subtotal e Botão para Finalizar -->
+            <div class="drawer-footer">
+                <div class="drawer-summary-row">
+                    <span>Subtotal:</span>
+                    <strong id="drawerSubtotal">R$ 0,00</strong>
+                </div>
+                <div class="drawer-summary-row total">
+                    <span>Total Estimado:</span>
+                    <span class="price" id="drawerTotal">R$ 0,00</span>
+                </div>
+                <a href="carrinho.html" class="btn-checkout-drawer">
+                    <span>Avançar para Pagamento</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOTÃO FLUTUANTE WHATSAPP -->
+    <a href="https://api.whatsapp.com/send?phone=5583999999999&text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20pedido%20na%20Tia%20Fatia!" target="_blank" class="whatsapp-float-btn" title="Falar no WhatsApp" aria-label="Atendimento WhatsApp">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.09-.39-.13-.56.13-.17.25-.64.81-.79.98-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.24-.75-.67-1.25-1.49-1.4-1.74-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.44 1.03 2.61c.13.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.3z"/>
+        </svg>
+    </a>
+
+    <!-- BARRA DE NAVEGAÇÃO INFERIOR PARA MOBILE (APP STYLE) -->
+    <div class="mobile-bottom-bar">
+        <div class="mobile-bottom-nav">
+            <a href="index.html" class="mobile-nav-item active">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+                <span>Início</span>
+            </a>
+            <a href="#cardapio" class="mobile-nav-item">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polygon points="12 8 8 12 12 16 16 12 12 8"></polygon>
+                </svg>
+                <span>Cardápio</span>
+            </a>
+            <button class="mobile-nav-item" onclick="toggleCartDrawer()">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+                <span class="mobile-cart-badge" style="display: none;">0</span>
+                <span>Carrinho</span>
+            </button>
+            <a href="entregas.html" class="mobile-nav-item">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="1" y="3" width="15" height="13"></rect>
+                    <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                    <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                    <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                </svg>
+                <span>Entregas</span>
+            </a>
+            <a href="login.html" class="mobile-nav-item">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span>Perfil</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- FOOTER MODERNO -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Coluna Sobre & Logo Original -->
+                <div class="footer-about">
+                    <img src="img/TIA-FATIA-LOGO_TITLE.png" alt="Tia Fatia" class="footer-logo">
+                    <p>
+                        A pizzaria por fatia que conquistou o seu coração! Pizzas preparadas com amor, fermentação natural e fatias bem recheadas.
+                    </p>
+                </div>
+
+                <!-- Coluna Links Rápidos -->
+                <div class="footer-col">
+                    <h4>Navegação</h4>
+                    <div class="footer-links">
+                        <a href="index.html">Página Inicial</a>
+                        <a href="#cardapio">Nosso Cardápio</a>
+                        <a href="pedido.html">Personalizar Pedido</a>
+                        <a href="carrinho.html">Carrinho & Checkout</a>
+                        <a href="entregas.html">Acompanhe seu Pedido</a>
+                    </div>
+                </div>
+
+                <!-- Coluna Sabores Populares -->
+                <div class="footer-col">
+                    <h4>Mais Pedidos</h4>
+                    <div class="footer-links">
+                        <a href="#cardapio">Fatia Calabresa Artesanal</a>
+                        <a href="#cardapio">Fatia Marguerita Especial</a>
+                        <a href="#cardapio">Fatia Sensação de Morango</a>
+                        <a href="#cardapio">Combo 2 Salgados + Refri</a>
+                    </div>
+                </div>
+
+                <!-- Coluna Contato & Horários -->
+                <div class="footer-col">
+                    <h4>Atendimento</h4>
+                    <div class="footer-contact-item">
+                        <span>📍 Av. Principal das Fatias, 1000</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <span>⏰ Ter a Dom: 18:00 às 23:30</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <span>📞 (83) 99999-9999</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Tia Fatia. Todos os direitos reservados. Feito com carinho para amantes de pizza.</p>
+                <p>Ambiente 100% Seguro 🔒</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts do Novo Sistema -->
+    <script src="app.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
