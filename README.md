@@ -12,6 +12,10 @@
   <strong>A melhor experiência de pizzaria por fatia artesanal, agora totalmente remodelada, moderna, animada e responsiva para qualquer celular!</strong>
 </p>
 
+<p align="center">
+  🎬 <strong><a href="motion-design.html">Assistir ao Vídeo Motion Design Oficial (20s)</a></strong> • 📥 <strong><a href="tia_fatia_motion_design.mp4">Baixar Vídeo MP4 (1080p)</a></strong>
+</p>
+
 ---
 
 ## 🚀 O que mudou na Versão 2.0?
